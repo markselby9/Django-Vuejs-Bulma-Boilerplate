@@ -14,7 +14,7 @@
       </h2>
       <br>
       <p class="has-text-centered">
-        <router-link to="/login">
+        <router-link to="/mentorlist">
           <a class="button is-medium is-info is-outlined">
             Get started!
           </a>

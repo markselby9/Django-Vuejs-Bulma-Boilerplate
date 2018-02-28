@@ -1,7 +1,10 @@
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from mentor_server.mentor.serializers import UserSerializer, GroupSerializer, MentorSerializer
-from models import Mentor
+from rest_framework import viewsets, status
+from rest_framework.decorators import detail_route
+from rest_framework.response import Response
+
+from mentor_server.mentor.serializers import *
+from models import *
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -10,6 +13,16 @@ class UserViewSet(viewsets.ModelViewSet):
   """
   queryset = User.objects.all().order_by('-date_joined')
   serializer_class = UserSerializer
+
+  @detail_route(methods=['get'])
+  def get_profile(self, request, pk=None):
+    user = self.get_object()
+    profile = Profile.objects.get(user=user)
+    serializer = ProfileSerializer(profile)
+    if profile:
+      return Response(serializer.data)
+    return Response(serializer.errors,
+                    status=status.HTTP_400_BAD_REQUEST)
 
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -23,3 +36,8 @@ class GroupViewSet(viewsets.ModelViewSet):
 class MentorViewSet(viewsets.ModelViewSet):
   queryset = Mentor.objects.all()
   serializer_class = MentorSerializer
+
+
+class ProfileViewSet(viewsets.ModelViewSet):
+  queryset = Profile.objects.all()
+  serializer_class = ProfileSerializer

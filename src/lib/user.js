@@ -11,13 +11,22 @@ const login = (username, password, successFunc, errorFunc) => {
     const { token, user } = response;
     if (token) {
       http.setHeaderToken(token);
-      sessionStorage.token = token;
-      sessionStorage.user = user;
+      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('user', JSON.stringify(user));
       if (successFunc) successFunc(response);
     }
   }).catch(err => {
     if (errorFunc) errorFunc(err);
   });
+};
+
+const getProfile = (successFunc, errorFunc) => {
+  const user = JSON.parse(sessionStorage.user);
+  if (user) {
+    http.get(`/users/${user.pk}/get_profile/`).then(response => {
+      successFunc(response)
+    }).errorFunc(err => errorFunc(err))
+  }
 };
 
 const logout = (successFunc, errorFunc) => {
@@ -38,5 +47,6 @@ const isUserLoggedIn = () => {
 export default {
   login,
   logout,
-  isUserLoggedIn
+  isUserLoggedIn,
+  getProfile
 };
