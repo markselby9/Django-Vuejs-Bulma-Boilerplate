@@ -7,7 +7,7 @@
         <form>
           <div class="field">
             <div class="control">
-              <input class="input is-large" type="email" placeholder="Your Email" autofocus="" v-model="email">
+              <input class="input is-large" placeholder="Your Email" autofocus="" v-model="username">
             </div>
           </div>
 
@@ -28,16 +28,21 @@
 </template>
 
 <script>
+  import $user from '../lib/user';
+
   export default {
     data() {
       return {
-        email: 'a@a.com',
-        password: '123'
+        username: 'admin',
+        password: '999admin'
       }
     },
     methods: {
-      clickLogin: function() {
-        console.log('click')
+      clickLogin: function () {
+        $user.login(this.username, this.password, res => {
+          this.$router.push(this.$route.query.redirect || '/');
+        }, err => {
+        });
       }
     }
   }

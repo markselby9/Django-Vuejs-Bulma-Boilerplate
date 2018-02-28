@@ -15,13 +15,10 @@
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-end">
             <router-link to="/" class="navbar-item" active-class="is-active">Home</router-link>
-            <a class="navbar-item">
-              Register my mentor
-            </a>
-            <router-link to="/login" class="navbar-item" active-class="is-active">Login</router-link>
-            <a class="navbar-item">
-              Help
-            </a>
+            <router-link to="/mentorlist" class="navbar-item" active-class="is-active">Find my mentor!</router-link>
+            <router-link to="/userpage" class="navbar-item" active-class="is-active">User page</router-link>
+            <!--<router-link to="/logout" class="navbar-item" active-class="is-active" v-if="isLoggedIn">Logout</router-link>-->
+            <!--<router-link to="/login" class="navbar-item" active-class="is-active" v-else>Login</router-link>-->
           </div>
         </div>
       </div>

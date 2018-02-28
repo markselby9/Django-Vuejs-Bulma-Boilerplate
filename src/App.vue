@@ -15,6 +15,9 @@
 <script>
 import Navigation from './components/Navigation.vue'
 import Footer from './components/Footer.vue'
+// import http from './lib/http';
+//
+// http.post('/rest-auth/login/').then(response => console.log(response));
 
 export default {
   name: 'App',

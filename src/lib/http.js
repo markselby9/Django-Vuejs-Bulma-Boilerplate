@@ -8,31 +8,47 @@ axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + po
 
 axios.defaults.timeout = 10000;
 
+// authentication related
+axios.interceptors.request.use(
+  config => {
+    if (sessionStorage.token) {
+      config.auth = { username: sessionStorage.token, password: '' };
+    }
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  }
+);
+
 export default {
-  get (url, param) {
+  get(url, param) {
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
         url,
         params: param
       }).then(res => {
-        resolve(res)
+        resolve(res.data)
       }).catch(error => {
         reject(error);
       });
     })
   },
-  post (url, param) {
+  post(url, param) {
     return new Promise((resolve, reject) => {
       axios({
         method: 'post',
         url,
         data: param
       }).then(res => {
-        resolve(res)
+        resolve(res.data)
       }).catch(error => {
         reject(error);
       });
     })
+  },
+  setHeaderToken(token) {
+    axios.defaults.headers.common['Authorization'] = token;
   }
 };
