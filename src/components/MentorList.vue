@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="columns" v-for="group in mentorlist">
-      <div class="column" v-for="t in group">
+    <div class="columns" v-for="group in mentorlist" v-bind:key="group[0].id">
+      <div class="column" v-for="t in group" v-bind:key="t.id">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
