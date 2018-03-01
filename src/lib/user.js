@@ -35,8 +35,16 @@ const isUserLoggedIn = () => {
   return (sessionStorage.token != null);
 };
 
+const getCurrentUser = () => {
+  if (sessionStorage.token != null) {
+    return JSON.parse(sessionStorage.user);
+  }
+  return null;
+};
+
 export default {
   login,
   logout,
-  isUserLoggedIn
+  isUserLoggedIn,
+  getCurrentUser,
 };

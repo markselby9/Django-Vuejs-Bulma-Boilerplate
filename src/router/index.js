@@ -41,10 +41,8 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('sessionStorage', sessionStorage);
   let token = sessionStorage.token;
   if (to.meta.requiresAuth) {
-    console.log(token);
     if (token) {
       next()
     } else {

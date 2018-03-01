@@ -3,6 +3,11 @@
     <div class="columns" v-for="group in mentorlist" v-bind:key="group[0].id">
       <div class="column" v-for="t in group" v-bind:key="t.id">
         <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+            </figure>
+          </div>
           <header class="card-header">
             <p class="card-header-title">
               {{t.name}}
