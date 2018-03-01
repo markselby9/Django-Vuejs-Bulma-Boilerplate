@@ -12,12 +12,13 @@
 </template>
 
 <script>
-  import user from '../lib/user';
+  import $user from '../lib/user';
+  import $profile from '../lib/profile';
 
   export default {
     created() {
-      this.isLoggedIn = user.isUserLoggedIn();
-      user.getProfile(response => {
+      this.isLoggedIn = $user.isUserLoggedIn();
+      $profile.getProfile(response => {
         this.profile = response;
       }, err => {
       });

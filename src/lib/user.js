@@ -20,15 +20,6 @@ const login = (username, password, successFunc, errorFunc) => {
   });
 };
 
-const getProfile = (successFunc, errorFunc) => {
-  const user = JSON.parse(sessionStorage.user);
-  if (user) {
-    http.get(`/users/${user.pk}/get_profile/`).then(response => {
-      successFunc(response)
-    }).errorFunc(err => errorFunc(err))
-  }
-};
-
 const logout = (successFunc, errorFunc) => {
   http.post(logoutEndpoint).then(response => {
     http.setHeaderToken(null); // clear token
@@ -47,6 +38,5 @@ const isUserLoggedIn = () => {
 export default {
   login,
   logout,
-  isUserLoggedIn,
-  getProfile
+  isUserLoggedIn
 };

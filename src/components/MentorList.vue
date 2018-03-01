@@ -15,7 +15,7 @@
           </div>
           <footer class="card-footer">
             <div class="card-footer-item">
-              <a class="button is-primary">Select as my mentor!</a>
+              <a class="button is-primary" @click="selectMentor(t.id)">Select as my mentor!</a>
             </div>
           </footer>
         </div>
@@ -26,6 +26,7 @@
 
 <script>
   import http from '../lib/http';
+  import $profile from '../lib/profile';
 
   export default {
     created() {
@@ -38,13 +39,30 @@
             mentorlist.push([data[i]]);
           }
         }
-
         this.mentorlist = mentorlist;
+      }, err => {
+        console.log(err);
+      });
+      $profile.getProfile(response => {
+        this.profile = response;
+      }, err => {
+        console.log(err)
       });
     },
     data() {
       return {
+        profile: null,
         mentorlist: []
+      }
+    },
+    methods: {
+      selectMentor(id) {
+        console.log(id);
+        $profile.updateSelectedMentor(id, response => {
+
+        }, err => {
+
+        })
       }
     }
   }
