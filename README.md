@@ -1,9 +1,22 @@
-# Mentorship system
+# Django + Vuejs + Bulma Boilerplate
 
-> A Vue.js + Django project
+## What we use
++ [Django REST framework](http://www.django-rest-framework.org/)
++ [Vue.js](vuejs.org)
++ [Bulma](https://bulma.io/documentation/overview/start/)
 
 ## Build Setup
 
+#### Back-end
+``` bash
+python manage.py makemigrate mentor (optional)
+python manage.py migrate
+python manage.py createsuperuser --email admin@example.com --username admin (only for dev)
+python manage.py runserver
+```
+Under development, you can go directly through the browser to check the endpoints, by going to: http://127.0.0.1:8000/
+
+#### Front-end
 ``` bash
 # install dependencies
 npm install
@@ -23,5 +36,3 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
